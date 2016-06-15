@@ -2,7 +2,7 @@ FROM ubuntu:trusty
 MAINTAINER tiryoh
 
 RUN apt-get update -q && \
-    apt-get install -yq wget curl vim git
+    apt-get install -yq wget curl vim git build-essential
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
 RUN curl -k https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | sudo apt-key add -
 RUN apt-get update -q && \
@@ -24,5 +24,7 @@ RUN mkdir -p ~/catkin_ws/src \
     && /bin/bash -c '. /opt/ros/indigo/setup.bash; cd $HOME/catkin_ws; catkin_make'
 RUN echo 'source /opt/ros/indigo/setup.bash' >> ~/.bashrc \
     && echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
+RUN git clone https://github.com/Tiryoh/oneliners.git && \
+    cd oneliners && make deinvim && make vim
 ENTRYPOINT ["bash"]
 CMD ["--login"]
