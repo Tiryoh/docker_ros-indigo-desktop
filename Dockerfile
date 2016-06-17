@@ -17,14 +17,16 @@ RUN useradd -m -d /home/ubuntu ubuntu -p `perl -e 'print crypt("password", "salt
 USER ubuntu
 WORKDIR /home/ubuntu
 ENV HOME=/home/ubuntu \
-    CATKIN_SHELL=bash
+    CATKIN_SHELL=bash \
+    LC_ALL = C
 RUN rosdep update
-RUN mkdir -p ~/catkin_ws/src \
-    && /bin/bash -c '. /opt/ros/indigo/setup.bash; catkin_init_workspace $HOME/catkin_ws/src' \
-    && /bin/bash -c '. /opt/ros/indigo/setup.bash; cd $HOME/catkin_ws; catkin_make'
-RUN echo 'source /opt/ros/indigo/setup.bash' >> ~/.bashrc \
-    && echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
+RUN mkdir -p ~/catkin_ws/src && \
+    /bin/bash -c '. /opt/ros/indigo/setup.bash; catkin_init_workspace $HOME/catkin_ws/src' && \
+    /bin/bash -c '. /opt/ros/indigo/setup.bash; cd $HOME/catkin_ws; catkin_make'
+RUN echo 'source /opt/ros/indigo/setup.bash' >> ~/.bashrc && \
+    echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
 RUN git clone https://github.com/Tiryoh/oneliners.git && \
-    cd oneliners && make deinvim && make vim
+    git clone https://github.com/Tiryoh/dotfiles.git && \
+    /bin/bash -c 'cd ${HOME}/dotfiles; make deinvim; make vim'
 ENTRYPOINT ["bash"]
 CMD ["--login"]
