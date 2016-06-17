@@ -28,4 +28,6 @@ RUN echo 'source /opt/ros/indigo/setup.bash' >> ~/.bashrc && \
 RUN git clone https://github.com/Tiryoh/oneliners.git && \
     git clone https://github.com/Tiryoh/dotfiles.git && \
     /bin/bash -c 'cd ${HOME}/dotfiles; make deinvim; make vim'
+ENTRYPOINT ["bash"]
+CMD ["--login"]
 
