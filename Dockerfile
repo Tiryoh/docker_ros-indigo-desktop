@@ -18,7 +18,7 @@ USER ubuntu
 WORKDIR /home/ubuntu
 ENV HOME=/home/ubuntu \
     CATKIN_SHELL=bash \
-    LC_ALL = C
+    LC_ALL=C
 RUN rosdep update
 RUN mkdir -p ~/catkin_ws/src && \
     /bin/bash -c '. /opt/ros/indigo/setup.bash; catkin_init_workspace $HOME/catkin_ws/src' && \
