@@ -6,7 +6,7 @@ ros-indigo-desktop Ubuntu14.04
 * latest (master)
   * basic image
 * dev
-  * essential packeges (e.g. vim,git,etc...) installed
+  * essential packages (e.g. vim,git,etc...) installed
 * bash
   * dev + bash auto login
 
