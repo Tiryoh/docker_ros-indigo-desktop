@@ -7,7 +7,9 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/
 RUN curl -k https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | sudo apt-key add -
 RUN apt-get update -q && \
     apt-get install -y ros-indigo-desktop-full \
-    python-rosinstall && \
+    python-rosinstall \
+	ros-indigo-ros-controllers \
+	ros-indigo-gazebo-ros-control && \
     rm -rf /var/lib/apt/lists/*
 RUN rosdep init
 
