@@ -11,14 +11,15 @@ RUN apt-get update -q && \
     python-rosinstall \
     rm -rf /var/lib/apt/lists/*
 RUN rosdep init
-
 RUN useradd -m -d /home/ubuntu ubuntu -p `perl -e 'print crypt("password", "salt"),"\n"'` && \
+RUN locale-gen en_US.UTF-8
     echo "ubuntu ALL=(ALL) ALL" >> /etc/sudoers
 
 USER ubuntu
 WORKDIR /home/ubuntu
 ENV HOME=/home/ubuntu \
     CATKIN_SHELL=bash
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 RUN rosdep update
 RUN mkdir -p ~/catkin_ws/src \
     && /bin/bash -c '. /opt/ros/indigo/setup.bash; catkin_init_workspace $HOME/catkin_ws/src' \
