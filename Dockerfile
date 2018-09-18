@@ -8,8 +8,6 @@ RUN curl -k https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | sud
 RUN apt-get update -q && \
     apt-get install -y ros-indigo-desktop-full \
     python-rosinstall \
-	ros-indigo-ros-controllers \
-	ros-indigo-gazebo-ros-control && \
     rm -rf /var/lib/apt/lists/*
 RUN rosdep init
 
