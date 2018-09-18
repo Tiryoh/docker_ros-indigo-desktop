@@ -11,8 +11,8 @@ RUN apt-get update -q && \
     python-rosinstall \
     rm -rf /var/lib/apt/lists/*
 RUN rosdep init
-RUN useradd -m -d /home/ubuntu ubuntu -p `perl -e 'print crypt("password", "salt"),"\n"'` && \
 RUN locale-gen en_US.UTF-8
+RUN useradd -m -d /home/ubuntu ubuntu -p `perl -e 'print crypt("ubuntu", "salt"),"\n"'` && \
     echo "ubuntu ALL=(ALL) ALL" >> /etc/sudoers
 
 USER ubuntu
@@ -26,5 +26,3 @@ RUN mkdir -p ~/catkin_ws/src \
     && /bin/bash -c '. /opt/ros/indigo/setup.bash; cd $HOME/catkin_ws; catkin_make'
 RUN echo 'source /opt/ros/indigo/setup.bash' >> ~/.bashrc \
     && echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
-ENTRYPOINT ["bash"]
-CMD ["--login"]
