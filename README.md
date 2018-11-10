@@ -1,28 +1,23 @@
 # docker_ros-indigo-desktop
-ros-indigo-desktop Ubuntu14.04
 
-# Version
+![](https://img.shields.io/docker/automated/tiryoh/ros-indigo-desktop.svg)
+![](https://img.shields.io/docker/build/tiryoh/ros-indigo-desktop.svg)
+![](https://img.shields.io/docker/pulls/tiryoh/ros-indigo-desktop.svg)
 
-* latest (master)
-  * basic image
-* dev
-  * essential packages (e.g. vim,git,etc...) installed
-* bash
-  * dev + bash auto login
+## Docker Hub
 
-# Sample
+https://hub.docker.com/r/tiryoh/ros-indigo-desktop/
 
+## Usage
+
+building ROS package `<package_name>` located in `~/repo/ros_ws/`:
 ```
-socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
-```
-
-```
-docker run -it --rm -h docker --name ros --env DISPLAY=192.168.99.1:0 -v $HOME/repo/ROS/ws/catkin_ws/src:/home/ubuntu/catkin_ws/src tiryoh/ros-indigo-desktop:dev
+$ docker run --rm -it -v ~/repo/ros_ws/<package_name>:/home/ubuntu/catkin_ws/src/<package_name> tiryoh/ros-indigo-desktop catkin_make
+$ 
 ```
 
-```
-docker exec -it ros /bin/bash
-```
+## License
 
-# LICENSE
-docker_ros-indigo-desktop is licensed under the MIT license.
+The MIT License
+
+2016-2018 (C) Tiryoh
