@@ -24,6 +24,8 @@ https://hub.docker.com/r/tiryoh/ros-indigo-desktop/
   $ docker run --rm -it -v ~/workspace/ros/<package_name>:/home/ubuntu/catkin_ws/src/<package_name> tiryoh/ros-indigo-desktop catkin_make
   ```
 
+* The default user of this container is `ubuntu` (not `root`), and the password is also set as `ubuntu`.
+
 ## License
 
 The MIT License
